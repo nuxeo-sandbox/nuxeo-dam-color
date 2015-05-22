@@ -1,0 +1,12 @@
+.color {
+    min-height : 2em;
+    height : 2em;
+    width : 2em;
+    display : inline-block;
+}
+
+.label {
+    min-height : 2em;
+    height : 2em;
+    display : inline-block;
+}

@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: org.nuxeo.demo.dam.color
+Bundle-Version: 1.0.0
+Bundle-Name: nuxeo-dam-color
+Bundle-ManifestVersion: 1
+Bundle-Vendor: Nuxeo
+Nuxeo-Component: OSGI-INF/extensions/operations.xml,OSGI-INF/extensions/widget-contrib.xml
+
