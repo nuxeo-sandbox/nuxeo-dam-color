@@ -48,7 +48,7 @@ public class TestParseColorOp {
     public void parseSingleREDColorString() throws Exception {
         AutomationService as = Framework.getService(AutomationService.class);
         OperationContext ctx = new OperationContext();
-        ctx.setInput(new StringBlob("      1: (  0,255,127) #009C7A hsl(0%,100%,50%)\n"));
+        ctx.setInput(new StringBlob("      1: (  0,255,128) #009C7A hsl(0%,100%,50%)\n"));
         OperationChain chain = new OperationChain("TestParseColorBlob");
         DocumentModel input = session.createDocumentModel("Picture");
         chain.add(ParseColorBlobOp.ID).
@@ -58,19 +58,19 @@ public class TestParseColorOp {
         String[] actualColors = (String[]) input.getPropertyValue("colors:actual");
         Assert.assertTrue(actualColors!=null);
         Assert.assertEquals(1,actualColors.length);
-        Assert.assertEquals("FE0000",actualColors[0]);
+        Assert.assertEquals("FF0000",actualColors[0]);
 
         String[] normalizedColors = (String[]) input.getPropertyValue("colors:normalized");
         Assert.assertTrue(normalizedColors!=null);
         Assert.assertEquals(1,normalizedColors.length);
-        Assert.assertEquals("FF0000",normalizedColors[0]);
+        Assert.assertEquals("E51919",normalizedColors[0]);
     }
 
     @Test
     public void parseSingleBLUEColorString() throws Exception {
         AutomationService as = Framework.getService(AutomationService.class);
         OperationContext ctx = new OperationContext();
-        ctx.setInput(new StringBlob("      1: (  170,255,127) #009C7A hsl(60%,100%,50%)\n"));
+        ctx.setInput(new StringBlob("      1: (  170,255,128) #009C7A hsl(60%,100%,50%)\n"));
         OperationChain chain = new OperationChain("TestParseColorBlob");
         DocumentModel input = session.createDocumentModel("Picture");
         chain.add(ParseColorBlobOp.ID).
@@ -81,12 +81,12 @@ public class TestParseColorOp {
         String[] actualColors = (String[]) input.getPropertyValue("colors:actual");
         Assert.assertTrue(actualColors!=null);
         Assert.assertEquals(1,actualColors.length);
-        Assert.assertEquals("0000FE",actualColors[0]);
+        Assert.assertEquals("0000FF",actualColors[0]);
 
         String[] normalizedColors = (String[]) input.getPropertyValue("colors:normalized");
         Assert.assertTrue(normalizedColors!=null);
         Assert.assertEquals(1,normalizedColors.length);
-        Assert.assertEquals("0000FF",normalizedColors[0]);
+        Assert.assertEquals("1919E5",normalizedColors[0]);
     }
 
     @Test
@@ -125,7 +125,7 @@ public class TestParseColorOp {
         String[] actualColors = (String[]) input.getPropertyValue("colors:actual");
         Assert.assertTrue(actualColors!=null);
         Assert.assertEquals(1,actualColors.length);
-        Assert.assertEquals("F9DCDC",actualColors[0]);
+        Assert.assertEquals("F8DCDC",actualColors[0]);
 
         String[] normalizedColors = (String[]) input.getPropertyValue("colors:normalized");
         Assert.assertTrue(normalizedColors!=null);
@@ -147,7 +147,7 @@ public class TestParseColorOp {
         String[] actualColors = (String[]) input.getPropertyValue("colors:actual");
         Assert.assertTrue(actualColors!=null);
         Assert.assertEquals(1,actualColors.length);
-        Assert.assertEquals("BCBFBF",actualColors[0]);
+        Assert.assertEquals("BCBDBD",actualColors[0]);
 
         String[] normalizedColors = (String[]) input.getPropertyValue("colors:normalized");
         Assert.assertTrue(normalizedColors!=null);

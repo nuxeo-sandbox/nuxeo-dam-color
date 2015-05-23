@@ -1,45 +1,39 @@
 package org.nuxeo.demo.dam.core.operations;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Michaël on 21/05/2015.
  */
 public class PaletteGeneration {
+
     public static void main(String[] args) {
-        BufferedImage image = new BufferedImage(NxColors.HUE.length+2,1,BufferedImage.TYPE_INT_ARGB);
-        for (int i =0;i<NxColors.HUE.length-1;i++) {
-                float h = NxColors.HUE[i] / 360.0f;
-                float s = NxColors.SATURATION / 100.0f;
-                float l = NxColors.LIGHTNESS / 100.0f;
-                image.setRGB(i,0, (int)HSLConverter.toRGB(h, s, l));
+        List<HSLColor> colors = new ArrayList<>();
+        for (int i = 0; i < NxColors.HUE.length - 1; i++) {
+            HSLColor color = new HSLColor(NxColors.HUE[i],NxColors.SATURATION,NxColors.LIGHTNESS,0);
+            colors.add(color);
         }
-        //Set white
-        image.setRGB(NxColors.HUE.length-1,0, (int)HSLConverter.toRGB(0, 0, 1.0f));
-        //Set gray
-        image.setRGB(NxColors.HUE.length,0, (int)HSLConverter.toRGB(0, 0, 0.5f));
-        //Set Black
-        image.setRGB(NxColors.HUE.length+1,0, (int)HSLConverter.toRGB(0, 0, 0));
-
-        Image scaled = image.getScaledInstance(NxColors.HUE.length*10,10,Image.SCALE_DEFAULT);
-
-        // Create a buffered image with transparency
-        BufferedImage bimage = new BufferedImage(
-                scaled.getWidth(null), scaled.getHeight(null), BufferedImage.TYPE_INT_ARGB);
-
-        // Draw the image on to the buffered image
-        Graphics2D bGr = bimage.createGraphics();
-        bGr.drawImage(scaled, 0, 0, null);
-        bGr.dispose();
+        //Add white
+        colors.add(new HSLColor(HSLColor.MIN_HUE,HSLColor.MIN_SATURATION,HSLColor.MAX_LIGHTNESS,0));
+        //Add gray
+        colors.add(new HSLColor(HSLColor.MIN_HUE, HSLColor.MIN_SATURATION, HSLColor.MAX_LIGHTNESS/2, 0));
+        //Add Black
+        colors.add(new HSLColor(HSLColor.MIN_HUE, HSLColor.MIN_SATURATION, HSLColor.MIN_LIGHTNESS, 0));
 
         // Return the buffered image
-        File outputfile = new File("image.png");
+        File outputfile = new File("palette.csv");
         try {
-            ImageIO.write(bimage, "png", outputfile);
+            OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(outputfile));
+            out.write("id, label, parent, obsolete\n");
+            for (int i=0;i<colors.size();i++) {
+                String id = String.format("%08X", colors.get(i).toRGB()).substring(2, 8);
+                out.write("\""+id+"\",\""+NxColors.COLOR_NAMES[i]+"\",\"\",\"0\"\n");
+            }
+            out.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
