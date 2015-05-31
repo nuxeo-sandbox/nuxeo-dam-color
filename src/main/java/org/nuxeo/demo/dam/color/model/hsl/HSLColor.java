@@ -1,4 +1,8 @@
-package org.nuxeo.demo.dam.core.operations;
+package org.nuxeo.demo.dam.color.model.hsl;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Michaël on 22/05/2015.
@@ -24,19 +28,37 @@ public class HSLColor {
         return new HSLColor(MIN_HUE,MIN_SATURATION,MAX_LIGHTNESS/2,count);
     }
 
+    /**
+     * Converts the input list to a list of hexadecimal rgb code
+     * @param colors the color object list
+     * @return a list of hex rgb codes
+     */
+    public static List<String> convertToRGB(List<HSLColor> colors) {
+        List<String> rgbs = new ArrayList<>();
+        for (HSLColor color : colors) {
+            rgbs.add(color.toRGBHex());
+        }
+        return rgbs;
+    }
+
+
     // Hue angle (0-360)
     protected float hue;
     // Saturation percentage (0-100)
     protected float saturation;
     // Lightness percentage (0-100)
     protected float lightness;
-    //Pixel counr
+    //Pixel count
     protected int count;
 
-    public HSLColor(int hue, int saturation, int lightness, int count) {
+    public HSLColor(int hue, int saturation, int lightness) {
         this.saturation = saturation;
         this.lightness = lightness;
         this.hue = hue;
+    }
+
+    public HSLColor(int hue, int saturation, int lightness, int count) {
+        this(hue,saturation,lightness);
         this.count = count;
     }
 
@@ -45,6 +67,17 @@ public class HSLColor {
         this.lightness = (int) lightness;
         this.hue = (int) hue;
         this.count = count;
+    }
+
+    public HSLColor(String rgbHex) {
+        int rgb = Integer.parseInt(rgbHex,16);
+        Color color = new Color(rgb);
+        float hsl[] = new float[3];
+        HSLRGBConverter.fromRGB(color,hsl);
+        this.hue = Math.round(hsl[0]*360);
+        this.saturation = Math.round(hsl[1]*100);
+        this.lightness = Math.round(hsl[2]*100);
+        this.count = 0;
     }
 
     public float getHue() {
@@ -68,7 +101,11 @@ public class HSLColor {
     }
 
     public long toRGB() {
-        return HSLConverter.toRGB(hue / 360.0f, saturation / 100.0f, lightness / 100.0f);
+        return HSLRGBConverter.toRGB(hue / 360.0f, saturation / 100.0f, lightness / 100.0f);
+    }
+
+    public String toRGBHex() {
+        return String.format("%08X",this.toRGB()).substring(2, 8);
     }
 
     @Override
@@ -79,5 +116,10 @@ public class HSLColor {
         if (hue != color.hue) return false;
         if (saturation != color.saturation) return false;
         return lightness == color.lightness;
+    }
+
+    @Override
+    public String toString() {
+        return "{" + hue + ", " + saturation + ", " + lightness + "}";
     }
 }

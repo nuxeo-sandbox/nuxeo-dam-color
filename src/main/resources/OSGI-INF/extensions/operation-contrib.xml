@@ -1,8 +1,7 @@
+<?xml version="1.0"?>
 <component name="org.nuxeo.demo.dam.color.operations">
-
    <extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent"
                point="operations" >
-      <operation class="org.nuxeo.demo.dam.core.operations.ParseColorBlobOp" />
+      <operation class="org.nuxeo.demo.dam.color.operations.ProcessColorHistogramOp" />
    </extension>
-
 </component>

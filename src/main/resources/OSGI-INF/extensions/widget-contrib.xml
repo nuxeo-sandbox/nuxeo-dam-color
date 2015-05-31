@@ -25,10 +25,10 @@
 
         <widgetType name="colors">
             <configuration>
-                <title>Color Picker</title>
+                <title>Colors</title>
                 <description>
                     <p>
-                        A colors widget
+                        A widget to display a list of colors
                     </p>
                 </description>
                 <supportedModes>

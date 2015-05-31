@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.demo.dam.color.listeners">
+    <extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent" point="event-handlers">
+        <handler chainId="ExtractColor" postCommit="true">
+            <event>pictureViewsGenerationDone</event>
+            <filters>
+                <doctype>Picture</doctype>
+                <attribute>Regular Document</attribute>
+            </filters>
+        </handler>
+    </extension>
+</component>

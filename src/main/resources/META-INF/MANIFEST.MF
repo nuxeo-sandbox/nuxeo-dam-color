@@ -4,5 +4,10 @@ Bundle-Version: 1.0.0
 Bundle-Name: nuxeo-dam-color
 Bundle-ManifestVersion: 1
 Bundle-Vendor: Nuxeo
-Nuxeo-Component: OSGI-INF/extensions/operations.xml,OSGI-INF/extensions/widget-contrib.xml
-
+Nuxeo-Component: OSGI-INF/extensions/operation-contrib.xml,
+  OSGI-INF/extensions/adapter-contrib.xml,
+  OSGI-INF/extensions/widget-contrib.xml,
+  OSGI-INF/extensions/schema-contrib.xml,
+  OSGI-INF/extensions/facet-contrib.xml,
+  OSGI-INF/extensions/chain-contrib.xml,
+  OSGI-INF/extensions/listener-contrib.xml

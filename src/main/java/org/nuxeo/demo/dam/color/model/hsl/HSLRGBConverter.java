@@ -1,4 +1,4 @@
-package org.nuxeo.demo.dam.core.operations;
+package org.nuxeo.demo.dam.color.model.hsl;
 
 import java.awt.*;
 
@@ -9,7 +9,7 @@ import java.awt.*;
  *
  * @see <a href="http://tips4java.wordpress.com/2009/07/05/hsl-color/">HSL Color</a>
  */
-public class HSLConverter
+public class HSLRGBConverter
 {
     /**
      * Convert a RGB Color to it corresponding HSL values.
