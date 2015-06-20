@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.dam.color.ui.widgets">
+    <extension
+            target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
+            point="widgettypes">
+
+        <widgetType name="color_picker">
+            <configuration>
+                <title>Color Picker</title>
+                <description>
+                    <p>
+                        A color picker widget
+                    </p>
+                </description>
+                <supportedModes>
+                    <mode>view</mode>
+                    <mode>edit</mode>
+                </supportedModes>
+            </configuration>
+            <handler-class>
+                org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+            </handler-class>
+            <property name="template">/widgets/color_picker.xhtml</property>
+        </widgetType>
+
+        <widgetType name="colors">
+            <configuration>
+                <title>Colors</title>
+                <description>
+                    <p>
+                        A widget to display a list of colors
+                    </p>
+                </description>
+                <supportedModes>
+                    <mode>view</mode>
+                </supportedModes>
+            </configuration>
+            <handler-class>
+                org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+            </handler-class>
+            <property name="template">/widgets/colors.xhtml</property>
+        </widgetType>
+    </extension>
+</component>

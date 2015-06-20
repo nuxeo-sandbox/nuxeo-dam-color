@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.dam.color.core.directories">
+    <extension target="org.nuxeo.ecm.directory.sql.SQLDirectoryFactory" point="directories">
+        <directory name="colors">
+            <schema>xvocabulary</schema>
+            <dataSource>java:/nxsqldirectory</dataSource>
+            <cacheTimeout>3600</cacheTimeout>
+            <cacheMaxSize>1000</cacheMaxSize>
+            <idField>id</idField>
+            <autoincrementIdField>false</autoincrementIdField>
+            <createTablePolicy>always</createTablePolicy>
+            <table>studio_vocabulary_colors</table>
+            <dataFile>data/vocabularies/colors.csv</dataFile>
+            <parentDirectory>colors</parentDirectory>
+        </directory>
+    </extension>
+</component>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.dam.color.core.chains">
+    <extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent" point="chains">
+        <chain id="ExtractColor">
+            <operation id="Context.FetchDocument"/>
+            <operation id="Context.SetInputAsVar">
+                <param type="string" name="name">doc</param>
+            </operation>
+            <operation id="Picture.GetView">
+                <param type="string" name="viewName">Small</param>
+            </operation>
+            <operation id="Context.SetVar">
+                <param type="string" name="name">fileName</param>
+                <param type="object" name="value">expr:This.filename</param>
+            </operation>
+            <operation id="Blob.RunConverter">
+                <param type="string" name="converter">ExtractColor</param>
+                <param type="properties" name="parameters">expr:max=512
+                    targetFileName=Colors-@{fileName}.txt
+                </param>
+            </operation>
+            <operation id="Conversion.ProcessColorHistogramOp">
+                <param type="document" name="documentModel">expr:Context["doc"]</param>
+            </operation>
+            <operation id="Context.RestoreDocumentInput">
+                <param type="string" name="name">doc</param>
+            </operation>
+            <operation id="Document.Save"/>
+        </chain>
+    </extension>
+</component>

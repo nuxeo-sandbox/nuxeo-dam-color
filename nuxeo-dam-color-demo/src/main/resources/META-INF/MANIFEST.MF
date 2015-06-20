@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: org.nuxeo.dam.color.demo
+Bundle-Version: 1.0.0
+Bundle-Name: nuxeo-dam-color-demo
+Bundle-ManifestVersion: 1
+Bundle-Vendor: Nuxeo
+Nuxeo-Component: OSGI-INF/extensions/color-search-contentview-contrib.xml,
+  OSGI-INF/extensions/action-contrib.xml,
+  OSGI-INF/extensions/chain-contrib.xml

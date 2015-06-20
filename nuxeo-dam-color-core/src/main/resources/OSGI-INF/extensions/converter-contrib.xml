@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.dam.color.core.converters">
+    <require>org.nuxeo.dam.color.core.commands</require>
+    <extension target="org.nuxeo.ecm.core.convert.service.ConversionServiceImpl" point="converter">
+        <converter name="ExtractColor" class="org.nuxeo.ecm.platform.convert.plugins.CommandLineConverter">
+            <parameters>
+                <parameter name="CommandLineName">ExtractColor</parameter>
+            </parameters>
+        </converter>
+    </extension>
+</component>

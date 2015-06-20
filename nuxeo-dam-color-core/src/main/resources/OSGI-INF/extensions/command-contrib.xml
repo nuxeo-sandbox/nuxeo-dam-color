@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.dam.color.core.commands">
+    <require>org.nuxeo.ecm.platform.commandline.executor.service.defaultContrib</require>
+    <extension target="org.nuxeo.ecm.platform.commandline.executor.service.CommandLineExecutorComponent" point="command">
+        <command name="ExtractColor" enabled="true">
+            <commandLine>convert</commandLine>
+            <parameterString>
+                #{sourceFilePath} -colors #{max} -colorspace HSL -format %c histogram:info:#{targetFilePath}
+            </parameterString>
+            <installationDirective>You need to install ImageMagick.</installationDirective>
+        </command>
+    </extension>
+</component>

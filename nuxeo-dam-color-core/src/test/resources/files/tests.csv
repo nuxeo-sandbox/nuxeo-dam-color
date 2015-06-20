@@ -1,0 +1,5 @@
+path;contains;doesNotcontain;isMainColor;IsNotMainColor
+/files/Small_Aerial04.txt;orange;none;none;none
+/files/Small_Aerial03.txt;green,blue;orange;none;none
+/files/Small_Cosmos05.txt;black,orange;none;black;none
+

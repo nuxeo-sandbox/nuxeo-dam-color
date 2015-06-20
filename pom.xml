@@ -1,128 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.nuxeo</groupId>
         <artifactId>nuxeo-addons-parent</artifactId>
         <version>7.2</version>
     </parent>
-    <artifactId>nuxeo-dam-color</artifactId>
-    <name>NUXEO DAM color</name>
+
+    <groupId>org.nuxeo.dam.color</groupId>
+    <artifactId>nuxeo-dam-color-parent</artifactId>
+    <version>0.1-SNAPSHOT</version>
+    <name>Nuxeo DAM Demo :: Parent pom</name>
+    <packaging>pom</packaging>
+
     <description/>
-    <dependencies>
-        <dependency>
-            <groupId>org.nuxeo.common</groupId>
-            <artifactId>nuxeo-common</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.nuxeo.runtime</groupId>
-            <artifactId>nuxeo-runtime</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.nuxeo.ecm.core</groupId>
-            <artifactId>nuxeo-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.nuxeo.ecm.core</groupId>
-            <artifactId>nuxeo-core-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.nuxeo.ecm.core</groupId>
-            <artifactId>nuxeo-core-query</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.nuxeo.ecm.core</groupId>
-            <artifactId>nuxeo-core-schema</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>org.osgi.core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.nuxeo.ecm.core</groupId>
-            <artifactId>nuxeo-core-convert-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.nuxeo.ecm.automation</groupId>
-            <artifactId>nuxeo-automation-core</artifactId>
-        </dependency>
 
-        <dependency>
-            <groupId>org.nuxeo.runtime</groupId>
-            <artifactId>nuxeo-runtime-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.nuxeo.ecm.core</groupId>
-            <artifactId>nuxeo-core-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.nuxeo.ecm.automation</groupId>
-            <artifactId>nuxeo-automation-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.nuxeo.ecm.platform</groupId>
-            <artifactId>nuxeo-platform-imaging-api</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.nuxeo.ecm.platform</groupId>
-            <artifactId>nuxeo-platform-imaging-core</artifactId>
-            <scope>test</scope>
-        </dependency>
+    <properties>
+        <nuxeo.project.version>${project.version}</nuxeo.project.version>
+        <nuxeo.version>7.2</nuxeo.version>
+        <nuxeo.distribution.version>7.2</nuxeo.distribution.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
 
-    </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-eclipse-plugin</artifactId>
-                <configuration>
-                    <additionalProjectnatures>
-                        <projectnature>org.nuxeo.ide.NuxeoNature</projectnature>
-                    </additionalProjectnatures>
-                    <classpathContainers>
-                        <classpathContainer>
-                            org.eclipse.jdt.launching.JRE_CONTAINER
-                        </classpathContainer>
-                        <classpathContainer>org.nuxeo.ide.SDK_CONTAINER
-                        </classpathContainer>
-                        <classpathContainer>org.nuxeo.ide.SDK_TEST_CONTAINER
-                        </classpathContainer>
-                        <classpathContainer>
-                            org.nuxeo.ide.SDK_USERLIB_CONTAINER
-                        </classpathContainer>
-                    </classpathContainers>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <configuration>
-                            <archive>
-                                <manifestFile>
-                                    src/test/resources/META-INF/MANIFEST.MF
-                                </manifestFile>
-                            </archive>
-                        </configuration>
-                        <goals>
-                            <goal>test-jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+    <modules>
+        <module>nuxeo-dam-color-core</module>
+        <module>nuxeo-dam-color-ui</module>
+        <module>nuxeo-dam-color-demo</module>
+        <module>nuxeo-dam-color-mp</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.nuxeo.ecm.distribution</groupId>
+                <artifactId>nuxeo-distribution</artifactId>
+                <scope>import</scope>
+                <type>pom</type>
+                <version>${nuxeo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.nuxeo.dam.color</groupId>
+                <artifactId>nuxeo-dam-color-core</artifactId>
+                <version>${nuxeo.project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.nuxeo.dam.color</groupId>
+                <artifactId>nuxeo-dam-color-ui</artifactId>
+                <version>${nuxeo.project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.nuxeo.dam.color</groupId>
+                <artifactId>nuxeo-dam-color-demo</artifactId>
+                <version>${nuxeo.project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.nuxeo.dam.color</groupId>
+                <artifactId>nuxeo-dam-color-mp</artifactId>
+                <version>${nuxeo.project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <repositories>
         <repository>
             <id>nuxeo-studio</id>
@@ -147,8 +87,7 @@
         </repository>
         <repository>
             <id>public-snapshot</id>
-            <url>http://maven.nuxeo.org/nexus/content/groups/public-snapshot
-            </url>
+            <url>http://maven.nuxeo.org/nexus/content/groups/public-snapshot</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
@@ -158,11 +97,12 @@
             </snapshots>
         </repository>
     </repositories>
+
     <pluginRepositories>
         <pluginRepository>
             <id>public</id>
             <url>http://maven.nuxeo.org/nexus/content/groups/public</url>
-            <name>Nuxeo releases</name>
+            <name>Nuxeo virtual release repository</name>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -170,5 +110,18 @@
                 <enabled>false</enabled>
             </snapshots>
         </pluginRepository>
+        <pluginRepository>
+            <id>public-snapshot</id>
+            <url>http://maven.nuxeo.org/nexus/content/groups/public-snapshot</url>
+            <name>Nuxeo virtual snapshot repository</name>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <updatePolicy>always</updatePolicy>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
     </pluginRepositories>
+
 </project>

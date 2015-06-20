@@ -1,0 +1,250 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.dam.color.demo.content">
+    <extension target="org.nuxeo.ecm.platform.ui.web.ContentViewService" point="contentViews">
+        <contentView name="search_by_color">
+            <genericPageProvider class="org.nuxeo.elasticsearch.provider.ElasticSearchNxqlPageProvider">
+                <property name="coreSession">#{documentManager}</property>
+                <whereClause>
+                    <predicate parameter="ecm:fulltext" operator="FULLTEXT ALL">
+                        <field schema="search_by_color_cv" name="system_fulltext"/>
+                    </predicate>
+                    <predicate parameter="colors:principal" operator="IN">
+                        <field schema="search_by_color_cv" name="colors_principal"/>
+                    </predicate>
+                    <predicate parameter="colors:principal" operator="IN">
+                        <field schema="search_by_color_cv" name="colors_principal_1"/>
+                    </predicate>
+                    <predicate parameter="colors:normalized" operator="IN">
+                        <field schema="search_by_color_cv" name="colors_normalized"/>
+                    </predicate>
+                    <predicate parameter="colors:normalized" operator="IN">
+                        <field schema="search_by_color_cv" name="colors_normalized_1"/>
+                    </predicate>
+                    <fixedPart>ecm:mixinType != 'HiddenInNavigation' AND ecm:mixinType = 'Picture' AND
+                        ecm:isCheckedInVersion = 0 AND ecm:currentLifeCycleState != 'deleted'
+                    </fixedPart>
+                </whereClause>
+                <searchDocumentType>search_by_color_cv</searchDocumentType>
+                <pageSize>10</pageSize>
+            </genericPageProvider>
+            <searchLayout name="search_by_color_cv@cvLayout"/>
+            <useGlobalPageSize>true</useGlobalPageSize>
+            <refresh>
+                <event>documentChanged</event>
+                <event>documentChildrenChanged</event>
+            </refresh>
+            <cacheKey>#{currentDocument.id}</cacheKey>
+            <cacheSize>10</cacheSize>
+            <selectionList>CURRENT_SELECTION</selectionList>
+            <showTitle>false</showTitle>
+            <title>Search By Color</title>
+            <translateTitle>false</translateTitle>
+            <showFilterForm>true</showFilterForm>
+            <showPageSizeSelector>true</showPageSizeSelector>
+            <showRefreshCommand>true</showRefreshCommand>
+            <actions category="CURRENT_SELECTION_LIST"/>
+            <actions category="cv_actions@search_by_color"/>
+            <resultLayouts>
+                <layout name="document_listing_thumbnail" title="document_thumbnail_listing" translateTitle="true"
+                        iconPath="/icons/document_listing_icon_2_columns_icon.png" showEditRows="true"/>
+                <layout name="document_listing_ajax" title="Search By Color" translateTitle="false"
+                        iconPath="/icons/document_listing_icon.png" showCSVExport="true" showEditColumns="true"
+                        showSpreadsheet="true"/>
+            </resultLayouts>
+            <resultColumns>#{searchDocument.cvd.selectedLayoutColumns}</resultColumns>
+            <resultLayout>#{searchDocument.cvd.resultLayoutName}</resultLayout>
+            <flags>
+                <flag>SEARCH</flag>
+            </flags>
+        </contentView>
+    </extension>
+
+    <extension target="org.nuxeo.ecm.core.schema.TypeService" point="schema">
+        <schema name="search_by_color_cv" prefix="search_by_color_cv" override="true"
+                src="data/schemas/search_by_color_cv.xsd"/>
+    </extension>
+
+    <extension target="org.nuxeo.ecm.core.schema.TypeService" point="doctype">
+        <doctype name="search_by_color_cv" extends="Document">
+            <facet name="ContentViewDisplay"/>
+            <facet name="SavedSearch"/>
+            <facet name="HiddenInNavigation"/>
+            <schema name="search_by_color_cv"/>
+        </doctype>
+    </extension>
+
+    <extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager" point="layouts">
+        <layout name="search_by_color_cv@cvLayout">
+            <templates>
+                <template mode="any">/layouts/layout_default_template.xhtml</template>
+            </templates>
+            <rows>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>container</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>container_1</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>container_2</widget>
+                </row>
+            </rows>
+            <widget name="container" type="container">
+                <labels>
+                    <label mode="any">Fulltext</label>
+                </labels>
+                <translated>false</translated>
+                <fields/>
+                <properties widgetMode="edit">
+                    <property name="display">block_top</property>
+                </properties>
+                <controls mode="any">
+                    <control name="handleLabels">true</control>
+                </controls>
+                <subWidgets>
+                    <widget name="sub0" type="text">
+                        <labels>
+                            <label mode="any">Full Text</label>
+                        </labels>
+                        <translated>false</translated>
+                        <fields>
+                            <field>search_by_color_cv:system_fulltext</field>
+                        </fields>
+                        <controls mode="any">
+                            <control name="handleLabels">true</control>
+                        </controls>
+                    </widget>
+                </subWidgets>
+            </widget>
+            <widget name="container_1" type="container">
+                <labels>
+                    <label mode="any">High Quantity Of</label>
+                </labels>
+                <translated>false</translated>
+                <fields/>
+                <properties widgetMode="edit">
+                    <property name="display">block_top</property>
+                </properties>
+                <controls mode="any">
+                    <control name="handleLabels">true</control>
+                </controls>
+                <subWidgets>
+                    <widget name="sub0" type="template">
+                        <labels>
+                            <label mode="any">Generic Search</label>
+                        </labels>
+                        <translated>false</translated>
+                        <fields>
+                            <field>search_by_color_cv:colors_principal</field>
+                        </fields>
+                        <widgetModes>
+                            <mode value="any">'hidden'</mode>
+                        </widgetModes>
+                        <properties widgetMode="edit">
+                            <property name="template">/widgets/color_picker.xhtml</property>
+                        </properties>
+                        <properties widgetMode="view">
+                            <property name="template">/widgets/color_picker.xhtml</property>
+                        </properties>
+                        <controls mode="any">
+                            <control name="handleLabels">true</control>
+                        </controls>
+                    </widget>
+                    <widget name="sub1" type="suggestManyDirectory">
+                        <labels>
+                            <label mode="any">Principal</label>
+                        </labels>
+                        <translated>false</translated>
+                        <fields>
+                            <field>search_by_color_cv:colors_principal_1</field>
+                        </fields>
+                        <properties widgetMode="edit">
+                            <property name="hideHelpLabel">true</property>
+                            <property name="directoryName">colors</property>
+                        </properties>
+                        <controls mode="any">
+                            <control name="handleLabels">true</control>
+                        </controls>
+                    </widget>
+                </subWidgets>
+            </widget>
+            <widget name="container_2" type="container">
+                <labels>
+                    <label mode="any">Any Quantity Of</label>
+                </labels>
+                <translated>false</translated>
+                <fields/>
+                <properties widgetMode="edit">
+                    <property name="display">block_top</property>
+                </properties>
+                <controls mode="any">
+                    <control name="handleLabels">true</control>
+                </controls>
+                <subWidgets>
+                    <widget name="sub0" type="template">
+                        <labels>
+                            <label mode="any">Generic Search</label>
+                        </labels>
+                        <translated>false</translated>
+                        <fields>
+                            <field>search_by_color_cv:colors_normalized</field>
+                        </fields>
+                        <widgetModes>
+                            <mode value="any">'hidden'</mode>
+                        </widgetModes>
+                        <properties widgetMode="edit">
+                            <property name="template">/widgets/color_picker.xhtml</property>
+                        </properties>
+                        <properties widgetMode="view">
+                            <property name="template">/widgets/color_picker.xhtml</property>
+                        </properties>
+                        <controls mode="any">
+                            <control name="handleLabels">true</control>
+                        </controls>
+                    </widget>
+                    <widget name="sub1" type="suggestManyDirectory">
+                        <labels>
+                            <label mode="any">Normalized</label>
+                        </labels>
+                        <translated>false</translated>
+                        <fields>
+                            <field>search_by_color_cv:colors_normalized_1</field>
+                        </fields>
+                        <properties widgetMode="edit">
+                            <property name="hideHelpLabel">true</property>
+                            <property name="directoryName">colors</property>
+                            <property name="DirectoryName">colors</property>
+                        </properties>
+                        <controls mode="any">
+                            <control name="handleLabels">true</control>
+                        </controls>
+                    </widget>
+                </subWidgets>
+            </widget>
+        </layout>
+    </extension>
+
+    <extension target="org.nuxeo.ecm.platform.types.TypeService" point="types">
+        <type id="search_by_color_cv">
+            <label>DefaultSearch</label>
+            <icon>/icons/search.png</icon>
+            <bigIcon>/icons/search_100.png</bigIcon>
+            <description>DefaultSearch.description</description>
+            <default-view>home_view_documents</default-view>
+            <layouts mode="any">
+                <layout>heading</layout>
+                <layout>search_by_color_cv@cvLayout</layout>
+            </layouts>
+        </type>
+    </extension>
+
+</component>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.dam.color.demo.actions">
+    <extension point="actions" target="org.nuxeo.ecm.platform.actions.ActionService">
+
+        <action id="search_by_color_search_action" enabled="true" order="-1" type="link" immediate="false" link=".">
+            <category>SEARCH_CONTENT_VIEWS</category>
+            <properties>
+                <property name="contentViewName">search_by_color</property>
+            </properties>
+        </action>
+
+
+        <action id="Recompute" label="Recompute Colors" enabled="true" order="0" type="link"
+                immediate="false" link="#{operationActionBean.doOperation('AC_RECOMPUTE_COLOR')}">
+            <category>USER_MENU_ACTIONS</category>
+            <filter id="filter@Recompute">
+                <rule grant="true"/>
+                <rule grant="false">
+                    <condition>!principal.isAdministrator()</condition>
+                </rule>
+            </filter>
+        </action>
+    </extension>
+</component>
