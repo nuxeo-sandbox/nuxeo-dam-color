@@ -146,30 +146,11 @@
                         <fields>
                             <field>search_by_color_cv:colors_principal</field>
                         </fields>
-                        <widgetModes>
-                            <mode value="any">'hidden'</mode>
-                        </widgetModes>
                         <properties widgetMode="edit">
                             <property name="template">/widgets/color_picker.xhtml</property>
                         </properties>
                         <properties widgetMode="view">
                             <property name="template">/widgets/color_picker.xhtml</property>
-                        </properties>
-                        <controls mode="any">
-                            <control name="handleLabels">true</control>
-                        </controls>
-                    </widget>
-                    <widget name="sub1" type="suggestManyDirectory">
-                        <labels>
-                            <label mode="any">Principal</label>
-                        </labels>
-                        <translated>false</translated>
-                        <fields>
-                            <field>search_by_color_cv:colors_principal_1</field>
-                        </fields>
-                        <properties widgetMode="edit">
-                            <property name="hideHelpLabel">true</property>
-                            <property name="directoryName">colors</property>
                         </properties>
                         <controls mode="any">
                             <control name="handleLabels">true</control>
@@ -198,31 +179,11 @@
                         <fields>
                             <field>search_by_color_cv:colors_normalized</field>
                         </fields>
-                        <widgetModes>
-                            <mode value="any">'hidden'</mode>
-                        </widgetModes>
                         <properties widgetMode="edit">
                             <property name="template">/widgets/color_picker.xhtml</property>
                         </properties>
                         <properties widgetMode="view">
                             <property name="template">/widgets/color_picker.xhtml</property>
-                        </properties>
-                        <controls mode="any">
-                            <control name="handleLabels">true</control>
-                        </controls>
-                    </widget>
-                    <widget name="sub1" type="suggestManyDirectory">
-                        <labels>
-                            <label mode="any">Normalized</label>
-                        </labels>
-                        <translated>false</translated>
-                        <fields>
-                            <field>search_by_color_cv:colors_normalized_1</field>
-                        </fields>
-                        <properties widgetMode="edit">
-                            <property name="hideHelpLabel">true</property>
-                            <property name="directoryName">colors</property>
-                            <property name="DirectoryName">colors</property>
                         </properties>
                         <controls mode="any">
                             <control name="handleLabels">true</control>
