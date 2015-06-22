@@ -9,11 +9,11 @@
 
 <link rel="stylesheet" type="text/css" href="#{contextPath}/css/color_picker.css"/>
 <script src="#{contextPath}/scripts/color_picker.js" />
+<script src="#{contextPath}/scripts/nuxeo.js" />
 <c:if test="#{widget.mode == 'edit'}">
-    <div>
-        <img id="color_palette" src="img/palette.png" width="100%"/>
-        <div id="selected_colors" class="selected_colors"></div>
-        <div id="color_input" class="hidden">
+    <div class="color_picker" id="color_picker_${widget.id}">
+        <div class="color_palette" />
+        <div class="hidden color_input">
             <h:inputText value="#{fieldOrValue}">
                 <f:converter converterId="select2Converter" />
             </h:inputText>
@@ -21,7 +21,7 @@
     </div>
     <script type="text/javascript" charset="utf-8">
     jQuery(document).ready(function () {
-     init_color_picker();
+     init_color_picker("color_picker_${widget.id}");
     });
     </script>
 </c:if>

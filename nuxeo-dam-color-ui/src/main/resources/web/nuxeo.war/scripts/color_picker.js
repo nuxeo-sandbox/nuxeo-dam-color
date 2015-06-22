@@ -1,73 +1,56 @@
-function init_color_picker() {
+function init_color_picker(color_picker) {
 
-  //get Image
-  var img = jQuery('#color_palette')[0];
-  var width =  img.width;
-  var height = img.height;
+  var client = new nuxeo.Client();
 
-  //create canvas
-  var canvas = document.createElement('canvas');
-  canvas.width = width;
-  canvas.height = height;
-  canvas.getContext('2d').drawImage(img, 0, 0, img.width, img.height);
+  client.request('directory/colors')
+    .get(function(error, data) {
+      if (error) {
+        // something went wrong
+        throw error;
+      }
+      for (i = 0; i < data.entries.length; i++) {
+          var entry = data.entries[i];
+          display_color(color_picker, entry.properties.id);
+      }
+      init_selection(color_picker);
+      console.log(JSON.stringify(data.entries, null, 2))
+    });
+};
 
-  //Display selected values
-  var valueArray = jQuery("#color_input :input").attr('value').split(',');
-  for (value of valueArray) {
-    if (value.length>0) display_color(value);
-  }
-
-  jQuery('#color_palette').click(function(event){
-
-    //get Image
-    var img = jQuery('#color_palette');
-    var img_pos = img.offset();
-
-    //compute coordinates
-    var x = event.pageX-img_pos.left;
-    var y = event.pageY-img_pos.top;
-
-    //get pixel color
-    var pixelData = canvas.getContext('2d').getImageData(x, y, 1, 1).data;
-    var color = pixelData[0]*65536+pixelData[1]*256+pixelData[2];
-    var colorHex = String("000000"+color.toString(16)).slice(-6).toUpperCase();
-
-    //Add color to selection
-    add_color_to_selection(colorHex);
-
-  });
+function display_color(color_picker, colorHex) {
+    var root = jQuery('#' + color_picker + " .color_palette").first();
+    var div = jQuery('<div>').
+      attr('id','colors' + Math.random()).
+      attr('name',colorHex).
+      addClass('not_selected_color').
+      css('background-color','#'+colorHex);
+    div.appendTo(root);
+    div.click(function(event){
+      var element = jQuery(event.target),
+        picker = color_picker;
+      if (element.hasClass("not_selected_color")) {
+        element.removeClass("not_selected_color");
+        element.addClass("selected_color")
+        add_color_to_selection(picker, element.attr('name'))
+      } else {
+        element.removeClass("selected_color");
+        element.addClass("not_selected_color")
+        remove_color_from_selection(picker, element.attr('name'))
+      }
+    });
 };
 
 
-function add_color_to_selection(colorHex) {
-    // Display color
-    display_color(colorHex)
-    //append value to input
-    var input = jQuery("#color_input :input");
+function add_color_to_selection(picker, colorHex) {
+    var input = jQuery("#" + picker + " .color_input :input").first();
     var value = input.attr('value');
     value.length > 0 ? value = value.concat(','+colorHex) : value = value.concat(''+colorHex);
     input.attr('value',value);
 };
 
-
-function display_color(colorHex) {
-    var root = jQuery('#selected_colors');
-    var div = jQuery('<div>').
-      attr('id','coucou' + Math.random()).
-      attr('name',colorHex).
-      addClass('selected_color').
-      css('background-color','#'+colorHex);
-    div.appendTo(root);
-    div.click(function(event){
-      var element = jQuery(event.target);
-      element.remove();
-      remove_color(element.attr('name'))
-    });
-};
-
-
-function remove_color(inputColor) {
-    var colorArray = jQuery("#color_input :input").attr('value').split(',');
+function remove_color_from_selection(picker, inputColor) {
+    var input = jQuery("#" + picker + " .color_input :input").first();
+    var colorArray = input.attr('value').split(',');
     colorArray.splice(colorArray.indexOf(inputColor),1);
     var output = '';
     for (color of colorArray) {
@@ -75,7 +58,17 @@ function remove_color(inputColor) {
         output = output.concat(','+color) :
         output = output.concat(''+color);
     }
-    jQuery("#color_input :input").attr('value',output);
+    input.attr('value',output);
 };
 
+function init_selection(picker) {
+    var input = jQuery("#" + picker + " .color_input :input").first();
+    var value = input.attr('value');
+    value.length > 0 ? value = value.split(',') : value = value;
+    for (i = 0; i < value.length; i++) {
+        var color = jQuery("#" + picker + ' div[name='+value[i]+']');
+        color.removeClass("not_selected_color");
+        color.addClass("selected_color")
+    }
+};
 

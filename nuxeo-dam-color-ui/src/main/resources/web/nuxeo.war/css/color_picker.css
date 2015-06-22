@@ -1,12 +1,21 @@
-.selected_colors {
+.colors {
     min-height : 3em;
     width : 100%;
 }
 
+.not_selected_color,
 .selected_color {
-    min-height : 3em;
-    width : 25%;
+    height : 2em;
+    width : 2em;
+    border-radius: 0.5em;
+    margin : 0.5em !important;
     display : inline-block;
+    border: 2px solid #ddd;
+}
+
+.selected_color {
+   border-width: 3px;
+   border-color: #FF0000;
 }
 
 .hidden {
