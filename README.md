@@ -23,6 +23,7 @@ mvn clean install
 
 ## Deploying
 - Install the marketplace package
+- Make sure that you have a recent version of Imagemagick (6.1.9) installed on your server
 
 
 ## Using the plugin 
