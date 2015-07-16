@@ -29,7 +29,7 @@ mvn clean install
 ## Using the plugin 
 - Log in with the Administrator account
 - Index existing pictures (top menu -> Administrator -> Recompute Colors)
-- Go to the search tab, select teh "Search by Color" search
+- Go to the search tab, select the "Search by Color" search
 
 ## Known limitations
 This plugin is a work in progress.
