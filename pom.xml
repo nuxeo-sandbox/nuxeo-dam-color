@@ -33,6 +33,7 @@
 
     <dependencyManagement>
         <dependencies>
+            <!--
             <dependency>
                 <groupId>org.nuxeo.ecm.distribution</groupId>
                 <artifactId>nuxeo-distribution</artifactId>
@@ -40,6 +41,7 @@
                 <type>pom</type>
                 <version>${nuxeo.version}</version>
             </dependency>
+        -->
             <dependency>
                 <groupId>org.nuxeo.dam.color</groupId>
                 <artifactId>nuxeo-dam-color-core</artifactId>
