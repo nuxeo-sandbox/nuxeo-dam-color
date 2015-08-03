@@ -20,6 +20,7 @@ git clone https://github.com/michaelva/nuxeo-dam-color
 cd nuxeo-dam-color
 mvn clean install
 ```
+Build Status and link: [![Build Status](https://qa.nuxeo.org/jenkins/buildStatus/icon?job=Sandbox/sandbox_dam-demo-utils-master)](https://qa.nuxeo.org/jenkins/job/Sandbox/job/sandbox_dam-demo-utils-master/)
 
 ## Deploying
 - Install the marketplace package
