@@ -4,7 +4,7 @@
         <handler chainId="ExtractColor" postCommit="true">
             <event>pictureViewsGenerationDone</event>
             <filters>
-                <doctype>Picture</doctype>
+                <facet>Picture</facet>
                 <attribute>Regular Document</attribute>
             </filters>
         </handler>
