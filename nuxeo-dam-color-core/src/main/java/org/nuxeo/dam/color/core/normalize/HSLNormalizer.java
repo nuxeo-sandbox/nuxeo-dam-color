@@ -46,7 +46,7 @@ public class HSLNormalizer {
             addColorToList(principalColors, color);
         }
 
-        colorHolder.setActualColors(actualColors);
+        //colorHolder.setActualColors(actualColors);
         colorHolder.setNormalizedColors(normalizedColors);
         colorHolder.setPrincipalColors(principalColors);
     }
