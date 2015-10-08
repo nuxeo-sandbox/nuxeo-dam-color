@@ -10,7 +10,7 @@
         </action>
 
 
-        <action id="Recompute" label="Recompute Colors" enabled="true" order="0" type="link"
+        <action id="Recompute" label="ADM - Recompute Colors" enabled="true" order="500" type="link"
                 immediate="false" link="#{operationActionBean.doOperation('AC_RECOMPUTE_COLOR')}">
             <category>USER_MENU_ACTIONS</category>
             <filter id="filter@Recompute">

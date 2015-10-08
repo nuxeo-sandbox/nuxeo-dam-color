@@ -6,7 +6,7 @@
                 <operation id="Repository.PageProvider">
                     <param type="string" name="language">NXQL</param>
                     <param type="integer" name="pageSize">50</param>
-                    <param type="string" name="maxResults">0</param>
+                    <param type="string" name="maxResults">10000</param>
                     <param type="string" name="query">SELECT * FROM Document WHERE ecm:mixinType = 'Picture' AND ecm:isCheckedInVersion = 0 AND ecm:currentLifeCycleState != 'deleted'</param>
                     <param type="string" name="sortOrder">ASC</param>
                 </operation>
