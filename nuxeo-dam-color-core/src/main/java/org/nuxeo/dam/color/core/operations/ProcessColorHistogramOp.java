@@ -42,6 +42,7 @@ public class ProcessColorHistogramOp {
 
     public static final String ID = "Conversion.ProcessColorHistogramOp";
 
+    @SuppressWarnings("unused")
     private static final Log log = LogFactory.getLog(ProcessColorHistogramOp.class);
 
     @Param(name = "documentModel", required = true)

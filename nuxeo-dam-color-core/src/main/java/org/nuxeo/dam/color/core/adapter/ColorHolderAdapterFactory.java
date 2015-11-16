@@ -1,6 +1,6 @@
 package org.nuxeo.dam.color.core.adapter;
 
-import org.nuxeo.ecm.core.api.ClientException;
+import org.nuxeo.ecm.core.api.NuxeoException;
 import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.adapter.DocumentAdapterFactory;
 
@@ -14,7 +14,7 @@ public class ColorHolderAdapterFactory implements DocumentAdapterFactory {
         if (doc.hasFacet("Colors")) {
             return new ColorHolderImpl(doc);
         } else {
-            throw new ClientException();
+            throw new NuxeoException();
         }
     }
 }

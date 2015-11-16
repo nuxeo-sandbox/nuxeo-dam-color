@@ -43,6 +43,7 @@ public class TestProcessColorHistogramOp {
 
     @Before
     public void studioConfigShouldBeLoaded() {
+        @SuppressWarnings("unused")
         DocumentModelImpl input = (DocumentModelImpl) session.createDocumentModel("Picture");
     }
 
